@@ -1,0 +1,67 @@
+---
+title: "BIOl1425_final"
+author: "wsano"
+date: "April 8, 2016"
+output: html_document
+---
+Munday (2006) claims that when sampling the 70 individuals of Gobiodon histrio and G. erythrospilus, the expectation for coral species occupancy distribution for each goby species will be virtually identical. Invoking the Lottery Hypothesis, Munday posits that the lack of competitive dominance of one goby species over the other prevents the exclusion of one species or the other from spatial niches. The distribution of goby species in spatial niches is governed by random factors, and therefore they should have an equal probability of occupying any niche. I hypothesize that differences in the abundance of both goby species and coral species (niches) will alter this expectation. The rarer species of goby will rarely occupy the rarest species of coral. Rare gobies have fewer “tickets” for the lottery, and will rarely win the rarest “prize”/spots. This will give the appearance of competitive dominance by the abundant goby, especially when sampling the distribution of niches occupied by X (#) of goby species (A/B) rather than the ratio of goby species A: goby species B at a variety of coral species niches. I would like to run an R simulation to test my hypothesis, randomly drawing gobies from a pool where the ratio of species A to species B is my independent variable. The drawn goby would then be placed via multinomial distribution into one of a variety of niches, the probability of each being specified by the multinomial. By manipulating the abundances of gobies and niches, I could examine the expectation for niche occupancy under the lottery hypothesis under various conditions.
+
+I am curious, though, about how much the abundance of the two goby species could differ realistically under the lottery hypothesis. Would the real-world constraints of the lottery hypothesis prevent a radically uneven ratio of species A:B?
+
+# R Markdown
+
+## step 1: getpool() function
+
+We start by simulating the goby pool from which we will draw to simulate settlement into various spatial niches (coral species). By plugging in the values for an overall sample size (variable "sample_size) and the subset of that sample size that is goby species A ("gobyA"), the getpool() function returns a vector of length "sample_size" with the appropriate number of species A and B.
+
+```{r}
+set.seed(1234)
+
+getpool<-function(gobyA,gobyB){
+  #gobyA = # of samples size that are species A
+  sample_size=gobyA+gobyB
+  gobypool<-c(1:sample_size)
+  gobypool[1:gobyA]<-"A"
+  gobypool[(gobyA+1):sample_size]<-"B"
+  return(gobypool)
+}
+getpool(100,100)
+```
+
+## step 2: setting the multinomial probability vector
+
+The next facet of this simulation is creating the environment of spatial niches where the goby species can settle. I will simulate the settlement of goby species in spatial niches of varying abundance using the rmultinom() function. An essential input to this function is a vector that passess the probabilities of each discrete outcome to the multinomial function. The probabilities in this vector can be interpreted here as the relative abundance of coral species/spatial niche types in the system. 
+
+```{r}
+coralprobs=function(niches){
+  #niches = desired number of niches
+  numbervector=c(1:1000)
+  #numbervector = vector 1:1000 from which to generate random numbers
+  x=sample(numbervector,niches)
+  probs=x/sum(x)
+  return(probs)
+}
+```
+
+
+##step 3: generating data using the multinomial distribution 
+
+```{r}
+coraldist=function(coralprobssss,pool){
+  whereA=c(1:length(coralprobssss))
+  whereB=c(1:length(coralprobssss))
+  for(x in 1:length(pool)){
+    onefish=sample(pool,1,replace = FALSE)
+    onespot=rbinom(1,1,coralprobssss)[which()]
+    if onefish="A"{
+      
+    }
+  }
+}
+```
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
