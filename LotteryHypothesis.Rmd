@@ -86,6 +86,7 @@ note: make sets of plots to be displayed together?
 use par() function
 #further questions: 
 
-  1) This test of concept is designed in response to the Munday 2004 paper, meaning that it is only describing a two-species system. Manipulation of the relative goby abundance variable alone does not seem to cause a deviation from expected coral species occupancy, and my intuition says that adding a third or fourth species to this system would not disturb this property of the simulation. It may, however, cause further skewing of the distribution when manipulating the relative abundance of gobies and corals at the same time.  
+  1) This test of concept is designed in response to the Munday 2004 paper, meaning that it is only describing a two-species system. Manipulation of the relative goby abundance variable alone does not seem to cause a deviation from expected coral species occupancy, and my intuition says that adding a third or fourth species to this system would not disturb this property of the simulation. It may, however, cause further skewing of the distribution when manipulating the relative abundance of gobies and corals at the same time.
+  2) something related to Allee effects?
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
